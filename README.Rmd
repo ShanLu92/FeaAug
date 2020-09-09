@@ -22,7 +22,14 @@ In version 0.1.0, this can be accomplished by the function "LMDRT". The function
 
 ## Installation
 
-You can download the package from Github and run the following:
+You can instll the package from Github:
+
+```{r}
+#library(devtools)
+#install_github('shanlu92/FeaAug')
+```
+
+Or you can download the package from Github and run the following:
 
 ```{r}
 #install.packages('path/FeaAug_0.1.0.tar.gz', repos = NULL, type = 'source')
