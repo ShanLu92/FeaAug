@@ -35,11 +35,17 @@
 
 trans=function(train,test,d0,d1,yname,yflag=T){
   ind=which(names(d0)==yname)
-  traindata=sapply((1:ncol(train))[-ind],logInPred,m=train,d0=d0,d1=d1,yname=yname,Mkex=Mkex,Mkey=Mkey)
+  cores=detectCores(logical = FALSE)
+  cl=makeCluster(cores)
+  clusterExport(cl,c("train","test","d0","d1","yname"))
+  traindata=parSapply(cl,(1:ncol(train))[-ind],logInPred,m=train,d0=d0,d1=d1,yname=yname,Mkex=Mkex,Mkey=Mkey)
+  traindata=cbind(traindata,train[ind])
   if (yflag==T){
-    testdata=sapply((1:ncol(test))[-ind],logInPred,m=test,d0=d0,d1=d1,yname=yname,Mkex=Mkex,Mkey=Mkey)
+    testdata=parSapply(cl,(1:ncol(test))[-ind],logInPred,m=test,d0=d0,d1=d1,yname=yname,Mkex=Mkex,Mkey=Mkey)
+    testdata=cbind(testdata,test[ind])
   } else{
-    testdata=sapply((1:ncol(test)),logInPred,m=test,d0=d0,d1=d1,yname=yname,Mkex=Mkex,Mkey=Mkey)
+    testdata=parSapply(cl,(1:ncol(test)),logInPred,m=test,d0=d0,d1=d1,yname=yname,Mkex=Mkex,Mkey=Mkey)
   }
+  stopCluster(cl)
   return(list(traindata=traindata,testdata=testdata))
 }
