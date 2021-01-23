@@ -25,7 +25,7 @@ trans(train, test, d0, d1, yname, yflag = T)
 \item{yflag}{a flag that describes whether there is result-column in the test set.}
 }
 \value{
-The transform function outputs dataset of augmented features.
+The transform function outputs dataset of augmented features plus labeling feature.
 }
 \description{
 Use the result of kernel density estimation to transform therefore augment features of train and test set.
