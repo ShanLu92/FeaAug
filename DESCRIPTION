@@ -1,7 +1,7 @@
 Package: FeaAug
 Type: Package
 Title: SVM with Feature Augmentation
-Version: 0.2.0
+Version: 0.2.1
 Author: Jie Gu, Yue Zheng Ouyang, Shan Lu
 Maintainer: Shan Lu <shan.lu@cufe.edu.cn>
 Description: We implement the logarithm marginal density ratios transformation to form the original features with the goal of obtaining new and better-quality transformed features that can greatly improve the detection capability of an SVM-based detection model. 

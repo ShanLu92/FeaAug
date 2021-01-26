@@ -37,9 +37,11 @@ logInPred=function(i,m,d0,d1,yname,Mkex=Mkex,Mkey=Mkey){
   K=m
   g=approxfun(denx0[,i],deny0[,i])
   d0=sapply(m[,i], g)
+  d0[which(is.na(d0))]=0
   d0[d0<0.01]=0.01
   f=approxfun(denx1[,i],deny1[,i])
   d1=sapply(m[,i], f)
+  d1[which(is.na(d1))]=0
   d1[d1<0.01]=0.01
   K[,i]=log(d1)-log(d0)
   return(K[,i])
