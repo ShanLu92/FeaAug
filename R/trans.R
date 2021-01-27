@@ -37,7 +37,7 @@ trans=function(train,test,d0,d1,yname,yflag=T){
   ind=which(names(d0)==yname)
   cores=detectCores(logical = FALSE)
   cl=makeCluster(cores)
-  clusterExport(cl,c("train","test","d0","d1","yname"))
+  clusterExport(cl,c("train","test","d0","d1","yname"), envir = environment())
   traindata=parSapply(cl,(1:ncol(train))[-ind],logInPred,m=train,d0=d0,d1=d1,yname=yname,Mkex=Mkex,Mkey=Mkey)
   traindata=cbind(traindata,train[ind])
   if (yflag==T){
